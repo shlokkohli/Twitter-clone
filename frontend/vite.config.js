@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://twitter-clone-1739.onrender.com' || process.env.VITE_API_URL,
+        target: 'https://twitter-clone-1739.onrender.com',
         changeOrigin: true,
         secure: false,
       }
@@ -14,22 +14,19 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: [
-        'react-router-dom',
-        'react-icons',
-        'react-icons/io5',
-        'react-icons/md',
-        'react-icons/fa'
-      ],
       output: {
-        globals: {
-          'react-router-dom': 'ReactRouterDOM',
-          'react-icons': 'ReactIcons',
-          'react-icons/io5': 'Io5',
-          'react-icons/md': 'Md',
-          'react-icons/fa': 'Fa'
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'router-vendor': ['react-router-dom'],
+          'icons-vendor': ['react-icons']
         }
       }
+    }
+  },
+  resolve: {
+    alias: {
+      'react-router-dom': 'react-router-dom',
+      'react-icons': 'react-icons'
     }
   }
 })
