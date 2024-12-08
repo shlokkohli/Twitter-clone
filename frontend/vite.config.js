@@ -6,9 +6,19 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL || 'http://localhost:8000',
+        target: 'https://twitter-clone-1739.onrender.com',
         changeOrigin: true,
         secure: false,
+      }
+    }
+  },
+  build: {
+    rollupOptions: {
+      external: ['react-router-dom'],
+      output: {
+        globals: {
+          'react-router-dom': 'ReactRouterDOM'
+        }
       }
     }
   }
