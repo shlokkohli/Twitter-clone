@@ -6,27 +6,10 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://twitter-clone-1739.onrender.com',
+        target: 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
       }
-    }
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router-vendor': ['react-router-dom'],
-          'icons-vendor': ['react-icons']
-        }
-      }
-    }
-  },
-  resolve: {
-    alias: {
-      'react-router-dom': 'react-router-dom',
-      'react-icons': 'react-icons'
     }
   }
 })
